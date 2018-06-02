@@ -1,0 +1,10 @@
+[
+  {
+    "ParameterKey": "S3BucketName",
+    "ParameterValue": "oreno-sample-bucket"
+  },
+  {
+    "ParameterKey": "CleanUpBucketFunction",
+    "ParameterValue": "delete-s3-objects-dev-runner"
+  }
+]

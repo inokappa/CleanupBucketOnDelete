@@ -1,0 +1,32 @@
+service: delete-s3-objects
+provider:
+  name: aws
+  runtime: python3.6
+  region: ap-northeast-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:*"
+      Resource: "*"
+
+functions:
+  runner:
+    handler: handler.runner
+    memorySize: 128
+    timeout: 60
+
+resources:
+  Resources:
+    RunnerLogGroup:
+      Properties:
+        RetentionInDays: "3"
+
+package:
+  exclude:
+    - README.md
+    - .gitignore
+    - .envrc
+    - .python-version
+    - cfn/**
+    - __pycache__/**
+    - tests/**

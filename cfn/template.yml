@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Clean up Bucket on CloudFormation stack delete demo."
+Parameters:
+  S3BucketName:
+    Type: String
+  CleanUpBucketFunction:
+    Type: String
+Resources:
+   BucketResource:
+     Type: AWS::S3::Bucket
+     Properties:
+       BucketName: !Ref S3BucketName
+   CleanupBucketOnDelete:
+     Type: Custom::CleanupBucket
+     Properties:
+       ServiceToken:
+         Fn::Join:
+           - ""
+           - - "arn:aws:lambda:"
+             - Ref: AWS::Region
+             - ":"
+             - Ref: AWS::AccountId
+             - ":function:"
+             - !Ref CleanUpBucketFunction
+       BucketName: !Ref S3BucketName
+     DependsOn: BucketResource
