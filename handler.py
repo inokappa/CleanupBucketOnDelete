@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# Refer: https://stackoverflow.com/questions/46479991/dependson-and-cloudformation-custom-resources
 
 import json
 import boto3
